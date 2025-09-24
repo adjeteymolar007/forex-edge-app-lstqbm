@@ -1,15 +1,28 @@
 
 export interface ForexSignal {
   id: string;
-  pair: string;
-  type: 'BUY' | 'SELL';
-  entryPrice: number;
+  tradeName: string;
+  asset: string;
+  order: 'BUY' | 'SELL';
+  timeZone: string;
+  entryZone: {
+    min: number;
+    max: number;
+  };
   stopLoss: number;
-  takeProfit: number;
+  takeProfits: {
+    tp1: number;
+    tp2: number;
+    tp3: number;
+    tp4: string | number; // Can be "Open" or a number
+  };
+  notes: string[];
+  disclaimer: string;
+  contactInfo: {
+    admin: string;
+  };
   status: 'ACTIVE' | 'CLOSED' | 'PENDING';
-  pips: number;
   timestamp: Date;
-  confidence: number;
 }
 
 export interface MarketData {

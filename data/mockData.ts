@@ -4,39 +4,90 @@ import { ForexSignal, MarketData, EducationArticle, ChatMessage, UserProfile, Fo
 export const mockSignals: ForexSignal[] = [
   {
     id: '1',
-    pair: 'EUR/USD',
-    type: 'BUY',
-    entryPrice: 1.0850,
-    stopLoss: 1.0800,
-    takeProfit: 1.0920,
+    tradeName: 'MolarGold Trade',
+    asset: 'XAUUSD',
+    order: 'BUY',
+    timeZone: 'M5',
+    entryZone: {
+      min: 3761.45,
+      max: 3774.91
+    },
+    stopLoss: 3761.2,
+    takeProfits: {
+      tp1: 3774.91,
+      tp2: 3774.91,
+      tp3: 3774.91,
+      tp4: 'Open'
+    },
+    notes: [
+      'Never allow a winning trade turn into a loss',
+      'Risk only 2-5% of account balance.',
+      'When price move to 15 pips move SL to BE.'
+    ],
+    disclaimer: 'Trading is risky and your capital is at risk. You may loose all your capital.',
+    contactInfo: {
+      admin: '@MolarGoldSupport'
+    },
     status: 'ACTIVE',
-    pips: 25,
     timestamp: new Date('2024-01-15T10:30:00'),
-    confidence: 85,
   },
   {
     id: '2',
-    pair: 'GBP/USD',
-    type: 'SELL',
-    entryPrice: 1.2650,
-    stopLoss: 1.2700,
-    takeProfit: 1.2580,
+    tradeName: 'MolarGold Trade',
+    asset: 'EURUSD',
+    order: 'SELL',
+    timeZone: 'M15',
+    entryZone: {
+      min: 1.0850,
+      max: 1.0865
+    },
+    stopLoss: 1.0880,
+    takeProfits: {
+      tp1: 1.0820,
+      tp2: 1.0800,
+      tp3: 1.0780,
+      tp4: 'Open'
+    },
+    notes: [
+      'Never allow a winning trade turn into a loss',
+      'Risk only 2-5% of account balance.',
+      'When price move to 15 pips move SL to BE.'
+    ],
+    disclaimer: 'Trading is risky and your capital is at risk. You may loose all your capital.',
+    contactInfo: {
+      admin: '@MolarGoldSupport'
+    },
     status: 'CLOSED',
-    pips: 70,
     timestamp: new Date('2024-01-15T08:15:00'),
-    confidence: 92,
   },
   {
     id: '3',
-    pair: 'USD/JPY',
-    type: 'BUY',
-    entryPrice: 148.50,
-    stopLoss: 147.80,
-    takeProfit: 149.80,
+    tradeName: 'MolarGold Trade',
+    asset: 'GBPUSD',
+    order: 'BUY',
+    timeZone: 'H1',
+    entryZone: {
+      min: 1.2650,
+      max: 1.2670
+    },
+    stopLoss: 1.2630,
+    takeProfits: {
+      tp1: 1.2700,
+      tp2: 1.2720,
+      tp3: 1.2750,
+      tp4: 1.2800
+    },
+    notes: [
+      'Never allow a winning trade turn into a loss',
+      'Risk only 2-5% of account balance.',
+      'When price move to 15 pips move SL to BE.'
+    ],
+    disclaimer: 'Trading is risky and your capital is at risk. You may loose all your capital.',
+    contactInfo: {
+      admin: '@MolarGoldSupport'
+    },
     status: 'PENDING',
-    pips: 0,
     timestamp: new Date('2024-01-15T12:00:00'),
-    confidence: 78,
   },
 ];
 
