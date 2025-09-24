@@ -4,29 +4,76 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-nati
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, commonStyles } from '../styles/commonStyles';
 import EducationCard from '../components/EducationCard';
-import { mockEducationArticles } from '../data/mockData';
+import CourseCard from '../components/CourseCard';
+import { mockEducationArticles, mockCourses } from '../data/mockData';
 
 export default function EducationScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [contentType, setContentType] = useState<'courses' | 'articles'>('courses');
 
-  const categories = ['All', 'Fundamentals', 'Technical Analysis', 'Risk Management'];
+  const categories = ['All', 'Technical Analysis', 'Chart Patterns', 'Trading Strategies', 'Market Structure', 'Fundamentals', 'Risk Management'];
   
+  const filteredCourses = selectedCategory === 'All' 
+    ? mockCourses 
+    : mockCourses.filter(course => course.category === selectedCategory);
+
   const filteredArticles = selectedCategory === 'All' 
     ? mockEducationArticles 
     : mockEducationArticles.filter(article => article.category === selectedCategory);
+
+  const handleCoursePress = (courseId: string) => {
+    console.log('Opening course:', courseId);
+    // Navigate to course detail screen
+  };
 
   const handleArticlePress = (articleId: string) => {
     console.log('Opening article:', articleId);
     // Navigate to article detail screen
   };
 
+  const freeCourses = mockCourses.filter(course => course.isFree);
+  const paidCourses = mockCourses.filter(course => !course.isFree);
+
   return (
     <SafeAreaView style={commonStyles.container}>
       <View style={styles.header}>
         <Text style={commonStyles.title}>Education</Text>
-        <Text style={commonStyles.textSecondary}>Learn and improve your trading skills</Text>
+        <Text style={commonStyles.textSecondary}>Master forex trading with our comprehensive courses</Text>
       </View>
 
+      {/* Content Type Toggle */}
+      <View style={styles.toggleContainer}>
+        <TouchableOpacity
+          style={[
+            styles.toggleButton,
+            contentType === 'courses' && styles.activeToggleButton
+          ]}
+          onPress={() => setContentType('courses')}
+        >
+          <Text style={[
+            styles.toggleText,
+            contentType === 'courses' && styles.activeToggleText
+          ]}>
+            Courses
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.toggleButton,
+            contentType === 'articles' && styles.activeToggleButton
+          ]}
+          onPress={() => setContentType('articles')}
+        >
+          <Text style={[
+            styles.toggleText,
+            contentType === 'articles' && styles.activeToggleText
+          ]}>
+            Articles
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Category Filter */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoryContainer}>
         {categories.map(category => (
           <TouchableOpacity
@@ -48,20 +95,76 @@ export default function EducationScreen() {
       </ScrollView>
 
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        {filteredArticles.map(article => (
-          <EducationCard
-            key={article.id}
-            article={article}
-            onPress={() => handleArticlePress(article.id)}
-          />
-        ))}
-        
-        {filteredArticles.length === 0 && (
-          <View style={[commonStyles.card, styles.emptyCard]}>
-            <Text style={commonStyles.textSecondary}>
-              No articles found in this category
-            </Text>
-          </View>
+        {contentType === 'courses' ? (
+          <>
+            {/* Free Courses Section */}
+            {selectedCategory === 'All' && (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>Free Courses</Text>
+                  <Text style={styles.sectionSubtitle}>Start learning without any cost</Text>
+                </View>
+                {freeCourses.map(course => (
+                  <CourseCard
+                    key={course.id}
+                    course={course}
+                    onPress={() => handleCoursePress(course.id)}
+                  />
+                ))}
+
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>Premium Courses</Text>
+                  <Text style={styles.sectionSubtitle}>Advanced training for serious traders</Text>
+                </View>
+                {paidCourses.map(course => (
+                  <CourseCard
+                    key={course.id}
+                    course={course}
+                    onPress={() => handleCoursePress(course.id)}
+                  />
+                ))}
+              </>
+            )}
+
+            {/* Filtered Courses */}
+            {selectedCategory !== 'All' && (
+              <>
+                {filteredCourses.map(course => (
+                  <CourseCard
+                    key={course.id}
+                    course={course}
+                    onPress={() => handleCoursePress(course.id)}
+                  />
+                ))}
+                {filteredCourses.length === 0 && (
+                  <View style={[commonStyles.card, styles.emptyCard]}>
+                    <Text style={commonStyles.textSecondary}>
+                      No courses found in this category
+                    </Text>
+                  </View>
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            {/* Articles */}
+            {filteredArticles.map(article => (
+              <EducationCard
+                key={article.id}
+                article={article}
+                onPress={() => handleArticlePress(article.id)}
+              />
+            ))}
+            
+            {filteredArticles.length === 0 && (
+              <View style={[commonStyles.card, styles.emptyCard]}>
+                <Text style={commonStyles.textSecondary}>
+                  No articles found in this category
+                </Text>
+              </View>
+            )}
+          </>
         )}
 
         <View style={styles.bottomPadding} />
@@ -77,6 +180,32 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingVertical: 20,
+  },
+  toggleContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 16,
+    marginBottom: 16,
+    backgroundColor: colors.backgroundAlt,
+    borderRadius: 8,
+    padding: 4,
+  },
+  toggleButton: {
+    flex: 1,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 6,
+    alignItems: 'center',
+  },
+  activeToggleButton: {
+    backgroundColor: colors.primary,
+  },
+  toggleText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.textSecondary,
+  },
+  activeToggleText: {
+    color: colors.background,
   },
   categoryContainer: {
     paddingHorizontal: 16,
@@ -99,6 +228,20 @@ const styles = StyleSheet.create({
   },
   activeCategoryText: {
     color: colors.background,
+  },
+  sectionHeader: {
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  sectionSubtitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
   },
   emptyCard: {
     marginHorizontal: 16,
