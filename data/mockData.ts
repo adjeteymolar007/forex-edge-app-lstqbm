@@ -1,5 +1,5 @@
 
-import { ForexSignal, MarketData, EducationArticle, ChatMessage, UserProfile, Forecast, Course } from '../types/forex';
+import { ForexSignal, MarketData, EducationArticle, ChatMessage, UserProfile, Forecast, Course, Tool } from '../types/forex';
 
 export const mockSignals: ForexSignal[] = [
   {
@@ -347,5 +347,74 @@ export const mockForecasts: Forecast[] = [
     analysis: 'Resistance at 1.2700 holding strong. UK economic data showing weakness.',
     targetPrice: 1.2500,
     createdAt: new Date('2024-01-15T11:30:00'),
+  },
+];
+
+export const mockTools: Tool[] = [
+  {
+    id: 'tool-1',
+    name: 'MolarMax Indicator',
+    description: 'Advanced trend-following indicator that identifies high-probability entry and exit points with precision.',
+    category: 'Indicator',
+    type: 'MolarMax',
+    version: '2.1.0',
+    price: 299,
+    isFree: false,
+    rating: 4.9,
+    downloads: 5420,
+    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400',
+    features: [
+      'Real-time trend analysis',
+      'Multi-timeframe support',
+      'Custom alerts system',
+      'Backtesting capabilities',
+      'Risk management tools'
+    ],
+    compatibility: ['MT4', 'MT5', 'TradingView'],
+    createdAt: new Date('2024-01-01'),
+  },
+  {
+    id: 'tool-2',
+    name: 'Surfway Pro',
+    description: 'Professional trading suite with advanced market analysis tools and automated trading capabilities.',
+    category: 'EA',
+    type: 'Surfway Pro',
+    version: '3.0.2',
+    price: 499,
+    isFree: false,
+    rating: 4.8,
+    downloads: 3280,
+    imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400',
+    features: [
+      'Automated trading system',
+      'Advanced risk management',
+      'Market scanner',
+      'Portfolio optimization',
+      'Real-time notifications'
+    ],
+    compatibility: ['MT4', 'MT5'],
+    createdAt: new Date('2024-01-05'),
+  },
+  {
+    id: 'tool-3',
+    name: 'Lazyman Tools',
+    description: 'Simple yet effective trading tools designed for busy traders who want maximum results with minimal effort.',
+    category: 'Utility',
+    type: 'Lazyman',
+    version: '1.5.1',
+    price: 0,
+    isFree: true,
+    rating: 4.6,
+    downloads: 12500,
+    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400',
+    features: [
+      'One-click trading setup',
+      'Automated lot sizing',
+      'Simple trend detection',
+      'Basic risk calculator',
+      'Easy-to-use interface'
+    ],
+    compatibility: ['MT4', 'MT5', 'TradingView', 'cTrader'],
+    createdAt: new Date('2024-01-10'),
   },
 ];

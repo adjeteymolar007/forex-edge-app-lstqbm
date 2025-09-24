@@ -76,3 +76,37 @@ export interface Forecast {
   targetPrice: number;
   createdAt: Date;
 }
+
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  duration: string;
+  lessons: number;
+  isFree: boolean;
+  price?: number;
+  imageUrl?: string;
+  instructor: string;
+  rating: number;
+  enrolledStudents: number;
+  createdAt: Date;
+}
+
+export interface Tool {
+  id: string;
+  name: string;
+  description: string;
+  category: 'Indicator' | 'EA' | 'Utility';
+  type: 'MolarMax' | 'Surfway Pro' | 'Lazyman';
+  version: string;
+  price: number;
+  isFree: boolean;
+  rating: number;
+  downloads: number;
+  imageUrl?: string;
+  features: string[];
+  compatibility: string[];
+  createdAt: Date;
+}
