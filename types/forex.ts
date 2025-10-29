@@ -110,3 +110,47 @@ export interface Tool {
   compatibility: string[];
   createdAt: Date;
 }
+
+export interface TradeEntry {
+  id: string;
+  instrument: string;
+  direction: 'BUY' | 'SELL';
+  entryPrice: number;
+  exitPrice?: number;
+  stopLoss: number;
+  takeProfits: number[];
+  lotSize: number;
+  entryTime: Date;
+  exitTime?: Date;
+  notes: string;
+  status: 'OPEN' | 'CLOSED' | 'PENDING';
+  pnl?: number;
+  pnlPercent?: number;
+  screenshotUrl?: string;
+}
+
+export interface VIPPost {
+  id: string;
+  title: string;
+  type: 'ELLIOTT_WAVE' | 'SIGNAL' | 'SMC_ENTRY';
+  content: string;
+  instrument?: string;
+  direction?: 'BUY' | 'SELL';
+  entry?: number;
+  stopLoss?: number;
+  takeProfits?: number[];
+  rationale: string;
+  chartImageUrl?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  isVisible: boolean;
+  scheduledFor?: Date;
+}
+
+export interface AdminUser {
+  id: string;
+  username: string;
+  email: string;
+  role: 'ADMIN' | 'MODERATOR' | 'USER';
+  createdAt: Date;
+}
