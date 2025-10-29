@@ -1,15 +1,28 @@
 
 export interface ForexSignal {
   id: string;
-  pair: string;
-  type: 'BUY' | 'SELL';
-  entryPrice: number;
+  tradeName: string;
+  asset: string;
+  order: 'BUY' | 'SELL';
+  timeZone: string;
+  entryZone: {
+    min: number;
+    max: number;
+  };
   stopLoss: number;
-  takeProfit: number;
+  takeProfits: {
+    tp1: number;
+    tp2: number;
+    tp3: number;
+    tp4: string | number; // Can be "Open" or a number
+  };
+  notes: string[];
+  disclaimer: string;
+  contactInfo: {
+    admin: string;
+  };
   status: 'ACTIVE' | 'CLOSED' | 'PENDING';
-  pips: number;
   timestamp: Date;
-  confidence: number;
 }
 
 export interface MarketData {
@@ -61,5 +74,83 @@ export interface Forecast {
   confidence: number;
   analysis: string;
   targetPrice: number;
+  createdAt: Date;
+}
+
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  duration: string;
+  lessons: number;
+  isFree: boolean;
+  price?: number;
+  imageUrl?: string;
+  instructor: string;
+  rating: number;
+  enrolledStudents: number;
+  createdAt: Date;
+}
+
+export interface Tool {
+  id: string;
+  name: string;
+  description: string;
+  category: 'Indicator' | 'EA' | 'Utility';
+  type: 'MolarMax' | 'Surfway Pro' | 'Lazyman';
+  version: string;
+  price: number;
+  isFree: boolean;
+  rating: number;
+  downloads: number;
+  imageUrl?: string;
+  features: string[];
+  compatibility: string[];
+  createdAt: Date;
+}
+
+export interface TradeEntry {
+  id: string;
+  instrument: string;
+  direction: 'BUY' | 'SELL';
+  entryPrice: number;
+  exitPrice?: number;
+  stopLoss: number;
+  takeProfits: number[];
+  lotSize: number;
+  entryTime: Date;
+  exitTime?: Date;
+  notes: string;
+  status: 'OPEN' | 'CLOSED' | 'PENDING';
+  pnl?: number;
+  pnlPercent?: number;
+  screenshotUrl?: string;
+}
+
+export interface VIPPost {
+  id: string;
+  title: string;
+  type: 'ELLIOTT_WAVE' | 'SIGNAL' | 'SMC_ENTRY';
+  content: string;
+  instrument?: string;
+  direction?: 'BUY' | 'SELL';
+  entry?: number;
+  stopLoss?: number;
+  takeProfits?: number[];
+  rationale: string;
+  chartImageUrl?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  isVisible: boolean;
+  scheduledFor?: Date;
+}
+
+export interface AdminUser {
+  id: string;
+  username: string;
+  email: string;
+  role: 'ADMIN' | 'MODERATOR' | 'USER';
   createdAt: Date;
 }
