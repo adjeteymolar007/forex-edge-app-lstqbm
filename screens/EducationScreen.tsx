@@ -23,12 +23,10 @@ export default function EducationScreen() {
 
   const handleCoursePress = (courseId: string) => {
     console.log('Opening course:', courseId);
-    // Navigate to course detail screen
   };
 
   const handleArticlePress = (articleId: string) => {
     console.log('Opening article:', articleId);
-    // Navigate to article detail screen
   };
 
   const freeCourses = mockCourses.filter(course => course.isFree);
@@ -36,65 +34,65 @@ export default function EducationScreen() {
 
   return (
     <SafeAreaView style={commonStyles.container}>
-      <View style={styles.header}>
-        <Text style={commonStyles.title}>Education</Text>
-        <Text style={commonStyles.textSecondary}>Master forex trading with our comprehensive courses</Text>
-      </View>
+      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <View style={styles.header}>
+          <Text style={commonStyles.title}>Education</Text>
+          <Text style={commonStyles.textSecondary}>Master forex trading with our comprehensive courses</Text>
+        </View>
 
-      {/* Content Type Toggle */}
-      <View style={styles.toggleContainer}>
-        <TouchableOpacity
-          style={[
-            styles.toggleButton,
-            contentType === 'courses' && styles.activeToggleButton
-          ]}
-          onPress={() => setContentType('courses')}
-        >
-          <Text style={[
-            styles.toggleText,
-            contentType === 'courses' && styles.activeToggleText
-          ]}>
-            Courses
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.toggleButton,
-            contentType === 'articles' && styles.activeToggleButton
-          ]}
-          onPress={() => setContentType('articles')}
-        >
-          <Text style={[
-            styles.toggleText,
-            contentType === 'articles' && styles.activeToggleText
-          ]}>
-            Articles
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Category Filter */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoryContainer}>
-        {categories.map(category => (
+        {/* Content Type Toggle */}
+        <View style={styles.toggleContainer}>
           <TouchableOpacity
-            key={category}
             style={[
-              styles.categoryButton,
-              selectedCategory === category && styles.activeCategoryButton
+              styles.toggleButton,
+              contentType === 'courses' && styles.activeToggleButton
             ]}
-            onPress={() => setSelectedCategory(category)}
+            onPress={() => setContentType('courses')}
           >
             <Text style={[
-              styles.categoryText,
-              selectedCategory === category && styles.activeCategoryText
+              styles.toggleText,
+              contentType === 'courses' && styles.activeToggleText
             ]}>
-              {category}
+              Courses
             </Text>
           </TouchableOpacity>
-        ))}
-      </ScrollView>
+          <TouchableOpacity
+            style={[
+              styles.toggleButton,
+              contentType === 'articles' && styles.activeToggleButton
+            ]}
+            onPress={() => setContentType('articles')}
+          >
+            <Text style={[
+              styles.toggleText,
+              contentType === 'articles' && styles.activeToggleText
+            ]}>
+              Articles
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        {/* Category Filter */}
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoryContainer}>
+          {categories.map(category => (
+            <TouchableOpacity
+              key={category}
+              style={[
+                styles.categoryButton,
+                selectedCategory === category && styles.activeCategoryButton
+              ]}
+              onPress={() => setSelectedCategory(category)}
+            >
+              <Text style={[
+                styles.categoryText,
+                selectedCategory === category && styles.activeCategoryText
+              ]}>
+                {category}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
         {contentType === 'courses' ? (
           <>
             {/* Free Courses Section */}
@@ -174,7 +172,7 @@ export default function EducationScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
     flex: 1,
   },
   header: {
@@ -191,10 +189,11 @@ const styles = StyleSheet.create({
   },
   toggleButton: {
     flex: 1,
-    paddingVertical: 8,
+    paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 6,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   activeToggleButton: {
     backgroundColor: colors.primary,
@@ -209,29 +208,33 @@ const styles = StyleSheet.create({
   },
   categoryContainer: {
     paddingHorizontal: 16,
-    marginBottom: 16,
+    marginBottom: 20,
   },
   categoryButton: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 20,
     backgroundColor: colors.backgroundAlt,
     marginRight: 8,
+    minHeight: 36,
+    justifyContent: 'center',
   },
   activeCategoryButton: {
     backgroundColor: colors.primary,
   },
   categoryText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '500',
     color: colors.textSecondary,
   },
   activeCategoryText: {
     color: colors.background,
+    fontWeight: '600',
   },
   sectionHeader: {
     paddingHorizontal: 16,
     paddingVertical: 16,
+    marginTop: 8,
   },
   sectionTitle: {
     fontSize: 18,
@@ -242,6 +245,7 @@ const styles = StyleSheet.create({
   sectionSubtitle: {
     fontSize: 14,
     color: colors.textSecondary,
+    lineHeight: 20,
   },
   emptyCard: {
     marginHorizontal: 16,
