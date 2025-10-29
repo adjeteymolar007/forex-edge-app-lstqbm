@@ -1,53 +1,52 @@
-
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { colors } from '../styles/commonStyles';
-import TabBar from '../components/TabBar';
-import HomeScreen from '../screens/HomeScreen';
-import SignalsScreen from '../screens/SignalsScreen';
-import EducationScreen from '../screens/EducationScreen';
-import ToolsScreen from '../screens/ToolsScreen';
-import ChatScreen from '../screens/ChatScreen';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { commonStyles, colors } from '../styles/commonStyles';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import SimpleBottomSheet from '../components/BottomSheet';
+
 
 export default function MainScreen() {
-  const [activeTab, setActiveTab] = useState('home');
+  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
 
-  const renderScreen = () => {
-    switch (activeTab) {
-      case 'home':
-        return <HomeScreen />;
-      case 'signals':
-        return <SignalsScreen />;
-      case 'education':
-        return <EducationScreen />;
-      case 'tools':
-        return <ToolsScreen />;
-      case 'chat':
-        return <ChatScreen />;
-      default:
-        return <HomeScreen />;
-    }
+  const handleOpenBottomSheet = () => {
+    setIsBottomSheetVisible(true);
   };
 
   return (
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <View style={styles.content}>
-          {renderScreen()}
+      <SafeAreaView style={commonStyles.container}>
+        <View style={commonStyles.content}>
+          <Image
+            source={require('../assets/images/final_quest_240x240.png')}
+            style={{ width: 180, height: 180 }}
+            resizeMode="contain"
+          />
+          <Text style={commonStyles.title}>This is a placeholder app.</Text>
+          <Text style={commonStyles.text}>Your app will be displayed here when it's ready.</Text>
+
+          <TouchableOpacity
+            style={{
+              backgroundColor: colors.primary,
+              paddingHorizontal: 24,
+              paddingVertical: 12,
+              borderRadius: 8,
+              marginTop: 30,
+            }}
+            onPress={handleOpenBottomSheet}
+          >
+            <Text style={{
+              color: colors.text,
+              fontSize: 16,
+              fontWeight: '600',
+            }}>
+              Open Bottom Sheet
+            </Text>
+          </TouchableOpacity>
         </View>
-        <TabBar activeTab={activeTab} onTabPress={setActiveTab} />
-      </View>
-    </SafeAreaProvider>
+
+        <SimpleBottomSheet
+          isVisible={isBottomSheetVisible}
+          onClose={() => setIsBottomSheetVisible(false)}
+        />
+      </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    flex: 1,
-  },
-});

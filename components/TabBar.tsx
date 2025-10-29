@@ -13,8 +13,8 @@ const tabs = [
   { id: 'home', icon: 'home-outline', activeIcon: 'home' },
   { id: 'signals', icon: 'trending-up-outline', activeIcon: 'trending-up' },
   { id: 'education', icon: 'book-outline', activeIcon: 'book' },
-  { id: 'tools', icon: 'construct-outline', activeIcon: 'construct' },
   { id: 'chat', icon: 'chatbubbles-outline', activeIcon: 'chatbubbles' },
+  { id: 'profile', icon: 'person-outline', activeIcon: 'person' },
 ];
 
 export default function TabBar({ activeTab, onTabPress }: TabBarProps) {
@@ -29,7 +29,7 @@ export default function TabBar({ activeTab, onTabPress }: TabBarProps) {
           <Icon
             name={activeTab === tab.id ? tab.activeIcon as any : tab.icon as any}
             size={24}
-            color={activeTab === tab.id ? colors.primary : colors.text}
+            color={activeTab === tab.id ? colors.primary : colors.textSecondary}
           />
         </TouchableOpacity>
       ))}

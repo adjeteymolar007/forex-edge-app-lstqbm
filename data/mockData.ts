@@ -1,93 +1,42 @@
 
-import { ForexSignal, MarketData, EducationArticle, ChatMessage, UserProfile, Forecast, Course, Tool } from '../types/forex';
+import { ForexSignal, MarketData, EducationArticle, ChatMessage, UserProfile, Forecast } from '../types/forex';
 
 export const mockSignals: ForexSignal[] = [
   {
     id: '1',
-    tradeName: 'MolarGold Trade',
-    asset: 'XAUUSD',
-    order: 'BUY',
-    timeZone: 'M5',
-    entryZone: {
-      min: 3761.45,
-      max: 3774.91
-    },
-    stopLoss: 3761.2,
-    takeProfits: {
-      tp1: 3774.91,
-      tp2: 3774.91,
-      tp3: 3774.91,
-      tp4: 'Open'
-    },
-    notes: [
-      'Never allow a winning trade turn into a loss',
-      'Risk only 2-5% of account balance.',
-      'When price move to 15 pips move SL to BE.'
-    ],
-    disclaimer: 'Trading is risky and your capital is at risk. You may loose all your capital.',
-    contactInfo: {
-      admin: '@MolarGoldSupport'
-    },
+    pair: 'EUR/USD',
+    type: 'BUY',
+    entryPrice: 1.0850,
+    stopLoss: 1.0800,
+    takeProfit: 1.0920,
     status: 'ACTIVE',
+    pips: 25,
     timestamp: new Date('2024-01-15T10:30:00'),
+    confidence: 85,
   },
   {
     id: '2',
-    tradeName: 'MolarGold Trade',
-    asset: 'EURUSD',
-    order: 'SELL',
-    timeZone: 'M15',
-    entryZone: {
-      min: 1.0850,
-      max: 1.0865
-    },
-    stopLoss: 1.0880,
-    takeProfits: {
-      tp1: 1.0820,
-      tp2: 1.0800,
-      tp3: 1.0780,
-      tp4: 'Open'
-    },
-    notes: [
-      'Never allow a winning trade turn into a loss',
-      'Risk only 2-5% of account balance.',
-      'When price move to 15 pips move SL to BE.'
-    ],
-    disclaimer: 'Trading is risky and your capital is at risk. You may loose all your capital.',
-    contactInfo: {
-      admin: '@MolarGoldSupport'
-    },
+    pair: 'GBP/USD',
+    type: 'SELL',
+    entryPrice: 1.2650,
+    stopLoss: 1.2700,
+    takeProfit: 1.2580,
     status: 'CLOSED',
+    pips: 70,
     timestamp: new Date('2024-01-15T08:15:00'),
+    confidence: 92,
   },
   {
     id: '3',
-    tradeName: 'MolarGold Trade',
-    asset: 'GBPUSD',
-    order: 'BUY',
-    timeZone: 'H1',
-    entryZone: {
-      min: 1.2650,
-      max: 1.2670
-    },
-    stopLoss: 1.2630,
-    takeProfits: {
-      tp1: 1.2700,
-      tp2: 1.2720,
-      tp3: 1.2750,
-      tp4: 1.2800
-    },
-    notes: [
-      'Never allow a winning trade turn into a loss',
-      'Risk only 2-5% of account balance.',
-      'When price move to 15 pips move SL to BE.'
-    ],
-    disclaimer: 'Trading is risky and your capital is at risk. You may loose all your capital.',
-    contactInfo: {
-      admin: '@MolarGoldSupport'
-    },
+    pair: 'USD/JPY',
+    type: 'BUY',
+    entryPrice: 148.50,
+    stopLoss: 147.80,
+    takeProfit: 149.80,
     status: 'PENDING',
+    pips: 0,
     timestamp: new Date('2024-01-15T12:00:00'),
+    confidence: 78,
   },
 ];
 
@@ -163,132 +112,6 @@ export const mockEducationArticles: EducationArticle[] = [
   },
 ];
 
-export const mockCourses: Course[] = [
-  {
-    id: 'course-1',
-    title: 'Elliott Waves Course',
-    description: 'Master the Elliott Wave Theory to predict market movements and identify high-probability trading opportunities.',
-    category: 'Technical Analysis',
-    difficulty: 'Advanced',
-    duration: '4 hours',
-    lessons: 12,
-    isFree: false,
-    price: 199,
-    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400',
-    instructor: 'Dr. Michael Elliott',
-    rating: 4.8,
-    enrolledStudents: 1250,
-    createdAt: new Date('2024-01-01'),
-  },
-  {
-    id: 'course-2',
-    title: 'Harmonic Patterns Course',
-    description: 'Learn to identify and trade harmonic patterns like Gartley, Butterfly, Bat, and Crab patterns for precise entries.',
-    category: 'Chart Patterns',
-    difficulty: 'Intermediate',
-    duration: '3.5 hours',
-    lessons: 10,
-    isFree: false,
-    price: 149,
-    imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400',
-    instructor: 'Sarah Harmonic',
-    rating: 4.7,
-    enrolledStudents: 980,
-    createdAt: new Date('2024-01-02'),
-  },
-  {
-    id: 'course-3',
-    title: 'Basic Chart Patterns',
-    description: 'Understand fundamental chart patterns including triangles, flags, pennants, and head & shoulders.',
-    category: 'Chart Patterns',
-    difficulty: 'Beginner',
-    duration: '2 hours',
-    lessons: 8,
-    isFree: true,
-    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400',
-    instructor: 'John Pattern',
-    rating: 4.5,
-    enrolledStudents: 2150,
-    createdAt: new Date('2024-01-03'),
-  },
-  {
-    id: 'course-4',
-    title: 'Advanced Chart Patterns',
-    description: 'Deep dive into complex chart patterns and advanced pattern recognition techniques for professional trading.',
-    category: 'Chart Patterns',
-    difficulty: 'Advanced',
-    duration: '5 hours',
-    lessons: 15,
-    isFree: false,
-    price: 249,
-    imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400',
-    instructor: 'Emma Advanced',
-    rating: 4.9,
-    enrolledStudents: 750,
-    createdAt: new Date('2024-01-04'),
-  },
-  {
-    id: 'course-5',
-    title: 'How to Analyze Market Structures',
-    description: 'Learn to read market structure, identify trends, support & resistance levels, and market phases.',
-    category: 'Market Structure',
-    difficulty: 'Intermediate',
-    duration: '3 hours',
-    lessons: 9,
-    isFree: true,
-    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400',
-    instructor: 'Mark Structure',
-    rating: 4.6,
-    enrolledStudents: 1680,
-    createdAt: new Date('2024-01-05'),
-  },
-  {
-    id: 'course-6',
-    title: 'Lazyman Strategy',
-    description: 'A simple yet effective trading strategy that requires minimal time and effort while maximizing profits.',
-    category: 'Trading Strategies',
-    difficulty: 'Beginner',
-    duration: '1.5 hours',
-    lessons: 6,
-    isFree: true,
-    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400',
-    instructor: 'Lazy Larry',
-    rating: 4.4,
-    enrolledStudents: 3200,
-    createdAt: new Date('2024-01-06'),
-  },
-  {
-    id: 'course-7',
-    title: 'Forex Fundamentals for Beginners',
-    description: 'Complete beginner guide to forex trading covering basics, terminology, and getting started.',
-    category: 'Technical Analysis',
-    difficulty: 'Beginner',
-    duration: '2.5 hours',
-    lessons: 7,
-    isFree: true,
-    imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400',
-    instructor: 'Anna Beginner',
-    rating: 4.3,
-    enrolledStudents: 4500,
-    createdAt: new Date('2024-01-07'),
-  },
-  {
-    id: 'course-8',
-    title: 'Risk Management Mastery',
-    description: 'Essential risk management techniques every trader must know to protect capital and ensure longevity.',
-    category: 'Trading Strategies',
-    difficulty: 'Intermediate',
-    duration: '2 hours',
-    lessons: 8,
-    isFree: true,
-    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400',
-    instructor: 'Risk Robert',
-    rating: 4.7,
-    enrolledStudents: 2800,
-    createdAt: new Date('2024-01-08'),
-  },
-];
-
 export const mockChatMessages: ChatMessage[] = [
   {
     id: '1',
@@ -347,74 +170,5 @@ export const mockForecasts: Forecast[] = [
     analysis: 'Resistance at 1.2700 holding strong. UK economic data showing weakness.',
     targetPrice: 1.2500,
     createdAt: new Date('2024-01-15T11:30:00'),
-  },
-];
-
-export const mockTools: Tool[] = [
-  {
-    id: 'tool-1',
-    name: 'MolarMax Indicator',
-    description: 'Advanced trend-following indicator that identifies high-probability entry and exit points with precision.',
-    category: 'Indicator',
-    type: 'MolarMax',
-    version: '2.1.0',
-    price: 299,
-    isFree: false,
-    rating: 4.9,
-    downloads: 5420,
-    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400',
-    features: [
-      'Real-time trend analysis',
-      'Multi-timeframe support',
-      'Custom alerts system',
-      'Backtesting capabilities',
-      'Risk management tools'
-    ],
-    compatibility: ['MT4', 'MT5', 'TradingView'],
-    createdAt: new Date('2024-01-01'),
-  },
-  {
-    id: 'tool-2',
-    name: 'Surfway Pro',
-    description: 'Professional trading suite with advanced market analysis tools and automated trading capabilities.',
-    category: 'EA',
-    type: 'Surfway Pro',
-    version: '3.0.2',
-    price: 499,
-    isFree: false,
-    rating: 4.8,
-    downloads: 3280,
-    imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400',
-    features: [
-      'Automated trading system',
-      'Advanced risk management',
-      'Market scanner',
-      'Portfolio optimization',
-      'Real-time notifications'
-    ],
-    compatibility: ['MT4', 'MT5'],
-    createdAt: new Date('2024-01-05'),
-  },
-  {
-    id: 'tool-3',
-    name: 'Lazyman Tools',
-    description: 'Simple yet effective trading tools designed for busy traders who want maximum results with minimal effort.',
-    category: 'Utility',
-    type: 'Lazyman',
-    version: '1.5.1',
-    price: 0,
-    isFree: true,
-    rating: 4.6,
-    downloads: 12500,
-    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400',
-    features: [
-      'One-click trading setup',
-      'Automated lot sizing',
-      'Simple trend detection',
-      'Basic risk calculator',
-      'Easy-to-use interface'
-    ],
-    compatibility: ['MT4', 'MT5', 'TradingView', 'cTrader'],
-    createdAt: new Date('2024-01-10'),
   },
 ];
